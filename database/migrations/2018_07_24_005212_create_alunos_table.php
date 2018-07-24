@@ -15,14 +15,15 @@ class CreateAlunosTable extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('matricula');
+            $table->integer('matricula')->unique();
             $table->string('nome');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('endereco');
+            $table->string('bairro');
             $table->string('cep', 11);
             $table->string('cidade', 30);
             $table->string('uf', 2);
-            $table->date('data_matricula');
+            $table->date('data_entrada');
             $table->timestamps();
         });
     }

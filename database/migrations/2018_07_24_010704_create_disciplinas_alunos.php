@@ -22,7 +22,6 @@ class CreateDisciplinasAlunos extends Migration
             $table->unsignedInteger('nota_1')->nullable();
             $table->unsignedInteger('nota_2')->nullable();
             $table->unsignedInteger('nota_3')->nullable();
-            $table->unsignedInteger('media')->nullable();
             $table->timestamps();
         });
     }

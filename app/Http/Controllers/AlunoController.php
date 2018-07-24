@@ -14,7 +14,8 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
+        $alunos = Aluno::all();
+        return view('alunos.list', compact('alunos'));
     }
 
     /**
@@ -25,6 +26,7 @@ class AlunoController extends Controller
     public function create()
     {
         //
+        return view('alunos.create');
     }
 
     /**
@@ -36,6 +38,27 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validator = \Validator::make($request->all(), [
+            "matricula" => "required|unique:alunos",
+            "email"     => "required|email",
+            "nome"      => "required",
+            "endereco"  => "required",
+            "bairro"    => "required",
+            "uf"        => "required",
+            "cidade"    => "required",
+            "cep"       => "required",
+            "data_entrada" => "required|date",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('alunos/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Aluno::create($request->all());
+        return redirect('alunos');
     }
 
     /**
@@ -46,7 +69,7 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
-        //
+        return view('alunos.show', compact('aluno'));
     }
 
     /**
@@ -57,7 +80,7 @@ class AlunoController extends Controller
      */
     public function edit(Aluno $aluno)
     {
-        //
+        return view('alunos.edit', compact('aluno'));
     }
 
     /**
