@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Aluno;
+use App\Disciplina;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -15,7 +16,8 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::all();
-        return view('alunos.list', compact('alunos'));
+        $disciplinas = Disciplina::all();
+        return view('alunos.list', compact('alunos', 'disciplinas'));
     }
 
     /**
@@ -26,7 +28,7 @@ class AlunoController extends Controller
     public function create()
     {
         //
-        return view('alunos.create');
+        // return view('alunos.create');
     }
 
     /**
@@ -41,7 +43,7 @@ class AlunoController extends Controller
 
         $validator = \Validator::make($request->all(), [
             "matricula" => "required|unique:alunos",
-            "email"     => "required|email",
+            "email"     => "required|email|unique:alunos",
             "nome"      => "required",
             "endereco"  => "required",
             "bairro"    => "required",
@@ -52,12 +54,15 @@ class AlunoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('alunos/create')
+            return redirect('alunos')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        Aluno::create($request->all());
+        $aluno = Aluno::create($request->all());
+        foreach($request->disciplinas as $disciplina){
+            // $aluno->disciplinas()->attcah($disciplina);
+        }
         return redirect('alunos');
     }
 

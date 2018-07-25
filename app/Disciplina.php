@@ -8,6 +8,8 @@ class Disciplina extends Model
 {
     //
 
+    protected $fillable = ['titulo'];
+
     public function notas(){
         return belongsTo(Disciplina::class, 'disciplinas_alunos');
     }

@@ -41,10 +41,13 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
+                                <a class="nav-link" href="{{url('/')}}">Home</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{url('alunos')}}">Alunos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('disciplinas')}}">disciplinas</a>
+                                <a class="nav-link" href="{{url('disciplinas')}}">Disciplinas</a>
                             </li>
                  
                     </ul>

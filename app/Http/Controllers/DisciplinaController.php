@@ -14,7 +14,8 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        //
+        $disciplinas = Disciplina::all();
+        return view('disciplinas.list', compact('disciplinas'));
     }
 
     /**
@@ -25,6 +26,7 @@ class DisciplinaController extends Controller
     public function create()
     {
         //
+        return view('disciplinas.create');
     }
 
     /**
@@ -36,6 +38,18 @@ class DisciplinaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = \Validator::make($request->all(), [
+            "titulo" => "required",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('disciplinas')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Disciplina::create($request->all());
+        return redirect('disciplinas');
     }
 
     /**
@@ -81,5 +95,9 @@ class DisciplinaController extends Controller
     public function destroy(Disciplina $disciplina)
     {
         //
+        if(!Disciplina::destroy($disciplina->id)){
+            return redirect('disciplinas')->with('error', "Falha ao exluir a disciplina: {$disciplina->titulo}");
+        }
+        return redirect('disciplinas')->with('success', 'Disciplina deletada com sucesso!');
     }
 }

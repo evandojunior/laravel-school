@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('alunos', 'AlunoController');
+Route::resource('disciplinas', 'DisciplinaController');
