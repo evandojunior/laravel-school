@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Aluno;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Aluno extends Model
+class AlunoModel extends Model
 {
     protected $fillable = [
         'matricula',
