@@ -61,7 +61,7 @@ class AlunoController extends Controller
 
         $aluno = Aluno::create($request->all());
         foreach($request->disciplinas as $disciplina){
-            // $aluno->disciplinas()->attcah($disciplina);
+            $aluno->disciplinas()->attcah($disciplina);
         }
         return redirect('alunos');
     }

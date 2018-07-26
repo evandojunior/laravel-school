@@ -17,7 +17,7 @@ class CreateAlunosTable extends Migration
             $table->increments('id');
             $table->integer('matricula')->unique();
             $table->string('nome');
-            $table->string('email')->unique();
+            $table->string('email', 120)->unique();
             $table->string('endereco');
             $table->string('bairro');
             $table->string('cep', 11);

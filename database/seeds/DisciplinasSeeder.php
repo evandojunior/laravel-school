@@ -11,6 +11,6 @@ class DisciplinasSeeder extends Seeder
      */
     public function run()
     {
-        //
+      
     }
 }
